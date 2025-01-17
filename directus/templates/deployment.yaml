@@ -50,10 +50,11 @@ spec:
                 secretKeyRef:
                   name: {{- if .Values.mariadb.enableInstallation }} 
                     {{ .Values.mariadb.auth.existingSecret }} 
+                    key: mariadb-password
                   {{- else if .Values.postgresql.enableInstallation }}
                     {{ .Values.postgresql.auth.existingSecret }} 
+                    key: postgresql-password
                   {{- end }}
-                  key: mariadb-password
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
