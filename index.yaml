@@ -3,7 +3,7 @@ entries:
   directus:
   - apiVersion: v2
     appVersion: 11.3.2
-    created: "2025-01-17T11:53:05.835234567+01:00"
+    created: "2025-01-17T14:18:14.204055993+01:00"
     dependencies:
     - condition: mariadb.enableInstallation
       name: mariadb
@@ -19,19 +19,19 @@ entries:
       version: ~16.3.0
     description: 'A Helm chart for installing Directus on Kubernetes. Directus is
       a real-time API and App dashboard for managing SQL database content. '
-    digest: 923fc8dda36e117008d20be9fa1d1146be2b40036c3c6257f4820a79a17bc78c
+    digest: dcae1bdc42f4438cc181de1b90423c72a7e5221d2c4a1bfb4ed056d19a41c4df
     home: https://directus.io/
     icon: https://avatars.githubusercontent.com/u/79210894
     maintainers:
-    - email: neokdev@gmail.com
-      name: neok
-      url: https://github.com/neokdev/directus-helm-chart/
+    - email: sindieiev@protonmail.ch
+      name: mikesindieiev
+      url: https://github.com/directus-labs/helm-chart
     name: directus
     sources:
-    - https://github.com/neokdev/directus-helm-chart/tree/main/directus
+    - https://github.com/directus-labs/helm-chart/tree/master/charts/directus
     - https://github.com/directus/directus
     type: application
     urls:
-    - directus-1.2.0.tgz
+    - https://github.com/neokdev/directus-helm-chart/raw/main/directus-1.2.0.tgz
     version: 1.2.0
-generated: "2025-01-17T11:53:05.823617482+01:00"
+generated: "2025-01-17T14:18:14.188181802+01:00"
