@@ -11,7 +11,7 @@ This is the Community Helm Charts repository for [Directus](https://directus.io/
 To install the Directus Helm charts, you need to add the following repository:
 
 ```sh
-helm repo add directus https://directus-labs.github.io/helm-chart/
+helm repo add directus https://github.com/neokdev/directus-helm-chart/
 ```
 
 ## Documentation

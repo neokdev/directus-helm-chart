@@ -9,7 +9,7 @@ description: |
 home: https://directus.io/
 
 sources:
-  - https://github.com/directus-labs/helm-chart/tree/master/charts/directus
+  - https://github.com/neokdev/directus-helm-chart/tree/main/directus
   - https://github.com/directus/directus
 
 icon: https://avatars.githubusercontent.com/u/79210894

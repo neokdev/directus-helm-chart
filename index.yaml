@@ -23,12 +23,12 @@ entries:
     home: https://directus.io/
     icon: https://avatars.githubusercontent.com/u/79210894
     maintainers:
-    - email: sindieiev@protonmail.ch
-      name: mikesindieiev
-      url: https://github.com/directus-labs/helm-chart
+    - email: neokdev@gmail.com
+      name: neok
+      url: https://github.com/neokdev/directus-helm-chart/
     name: directus
     sources:
-    - https://github.com/directus-labs/helm-chart/tree/master/charts/directus
+    - https://github.com/neokdev/directus-helm-chart/tree/main/directus
     - https://github.com/directus/directus
     type: application
     urls:
