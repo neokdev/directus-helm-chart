@@ -158,11 +158,11 @@ extraVolumeMounts: []
 
 mariadb:
   # -- The switch to switch off the installation of the mariadb, the rest of the settings are being used during the installation
-  enableInstallation: true
+  enableInstallation: false
   auth:
     # -- If you want to use your own mariadb secret,
     # set `createSecrets` to false and update `mariadb.auth.existingSecret` field with the correct secret name
-    createSecrets: true
+    createSecrets: false
     # -- The secret has to contain the following keys
     # `mariadb-root-password`,
     # `mariadb-replication-password`,
@@ -177,6 +177,28 @@ mariadb:
     username: "directus"
   # -- The URL to the mariadb instance, otherwise leave it empty to use one that installed in the cluster
   mariadbURL: ""
+
+postgresql:
+  # -- The switch to switch off the installation of the postgresql, the rest of the settings are being used during the installation
+  enableInstallation: true
+  auth:
+    # -- If you want to use your own postgresql secret,
+    # set `createSecrets` to false and update `postgresql.auth.existingSecret` field with the correct secret name
+    createSecrets: true
+    # -- The secret has to contain the following keys
+    # `postgresql-root-password`,
+    # `postgresql-replication-password`,
+    # `postgresql-password`,
+    # `ADMIN_PASSWORD`,
+    # `KEY`,
+    # `SECRET`
+    existingSecret: "directus-secret"
+    # -- Directus datatbase name
+    database: directus
+    # -- The user that is being used to connect to database
+    username: "directus"
+  # -- The URL to the postgresql instance, otherwise leave it empty to use one that installed in the cluster
+  postgresqlURL: ""
 
 redis:
 # -- Switch to enable Redis

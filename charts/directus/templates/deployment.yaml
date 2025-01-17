@@ -48,22 +48,38 @@ spec:
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  name: {{- if .Values.mariadb.enableInstallation }} 
+                    {{ .Values.mariadb.auth.existingSecret }} 
+                  {{- else if .Values.postgresql.enableInstallation }}
+                    {{ .Values.postgresql.auth.existingSecret }} 
+                  {{- end }}
                   key: mariadb-password
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  name: {{- if .Values.mariadb.enableInstallation }} 
+                    {{ .Values.mariadb.auth.existingSecret }} 
+                  {{- else if .Values.postgresql.enableInstallation }}
+                    {{ .Values.postgresql.auth.existingSecret }} 
+                  {{- end }}
                   key: ADMIN_PASSWORD
             - name: SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  name: {{- if .Values.mariadb.enableInstallation }} 
+                    {{ .Values.mariadb.auth.existingSecret }} 
+                  {{- else if .Values.postgresql.enableInstallation }}
+                    {{ .Values.postgresql.auth.existingSecret }} 
+                  {{- end }}
                   key: SECRET
             - name: KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  name: {{- if .Values.mariadb.enableInstallation }} 
+                    {{ .Values.mariadb.auth.existingSecret }} 
+                  {{- else if .Values.postgresql.enableInstallation }}
+                    {{ .Values.postgresql.auth.existingSecret }} 
+                  {{- end }}
                   key: KEY
             {{- if .Values.ingress.enabled }}
             - name: PUBLIC_URL
