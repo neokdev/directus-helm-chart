@@ -3,7 +3,7 @@ entries:
   directus:
   - apiVersion: v2
     appVersion: 11.3.2
-    created: "2025-01-17T15:03:44.885696218+01:00"
+    created: "2025-01-17T16:33:56.148910517+01:00"
     dependencies:
     - condition: mariadb.enableInstallation
       name: mariadb
@@ -34,4 +34,4 @@ entries:
     urls:
     - https://raw.githubusercontent.com/neokdev/directus-helm-chart/main/directus-1.2.0.tgz
     version: 1.2.0
-generated: "2025-01-17T15:03:44.871434509+01:00"
+generated: "2025-01-17T16:33:56.135787938+01:00"
