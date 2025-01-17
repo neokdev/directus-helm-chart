@@ -1,0 +1,33 @@
+apiVersion: v2
+name: directus
+type: application
+
+description: |
+  A Helm chart for installing Directus on Kubernetes.
+  Directus is a real-time API and App dashboard for managing SQL database content.
+
+home: https://directus.io/
+
+sources:
+  - https://github.com/directus-labs/helm-chart/tree/master/charts/directus
+  - https://github.com/directus/directus
+
+icon: https://avatars.githubusercontent.com/u/79210894
+
+maintainers:
+  - name: mikesindieiev
+    email: sindieiev@protonmail.ch
+    url: https://github.com/directus-labs/helm-chart
+
+version: 1.2.0
+appVersion: "11.3.2"
+
+dependencies:
+- name: mariadb
+  version: "~18.0.2"
+  repository: "https://charts.bitnami.com/bitnami"
+  condition: mariadb.enableInstallation
+- name: redis
+  version: "~19.6.4"
+  repository: "https://charts.bitnami.com/bitnami"
+  condition: redis.enabled

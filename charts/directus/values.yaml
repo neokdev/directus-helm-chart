@@ -1,0 +1,191 @@
+# Default values for directus.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  # -- Directus image docker repository
+  repository: directus/directus
+  # -- Pull policy for docker image
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- Image Pull Secrets in k8s for docker image
+imagePullSecrets: []
+# -- Helm name override in Chart.yaml. This name is being used for resource naming
+nameOverride: ""
+# -- Completely overrides Chart name
+fullnameOverride: ""
+
+# -- Init Containers for Directus pod
+initContainers: []
+#  - name: myinitcontainer
+#    image: alpine:latest
+#    restartPolicy: Always
+#    command:
+#      - sh
+#      - -c
+#      - cat /opt/file.txt
+#    volumeMounts:
+#      - name: opt
+#        mountPath: /opt
+
+# -- Sidecars for Directus pod
+sidecars: []
+#  - name: busybox
+#    image: busybox:latest
+#    imagePullPolicy: Always
+#    command:
+#      - /bin/sh
+#      - -c
+#      - sleep 3600;
+
+sidecar:
+  # IMPORTANT! This feature is going to be DEPRECATED in the next release in favour of `sidecars`
+  # -- Sidecars for Directus pod
+  enabled: false
+  repository: busybox
+  tag: latest
+  pullPolicy: Always
+  # -- Command to run in sidecar docker image
+  command: 
+    - /bin/sh
+    - -c
+    - sleep 3600;
+  securityContext: {}
+    # allowPrivilegeEscalation: true
+
+adminEmail: "admin@example.com"
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  # -- Enable TLS in PUBLIC_URL
+  enableTLS: true
+  className: ""
+  # -- Ingress annotations. Usually used in cloud environments
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    # -- Hostname to expose. You should create CNAME DNS record with this hostname to redirect to ALB DNS name
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+extraEnvVars: []
+
+attachExistingSecrets: []
+  # - existingSecretInKubernetes
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: /
+    port: http
+startupProbe:
+  enabled: false
+  httpGet:
+    path: /
+    port: http
+
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraVolumes: []
+
+extraVolumeMounts: []
+
+
+mariadb:
+  # -- The switch to switch off the installation of the mariadb, the rest of the settings are being used during the installation
+  enableInstallation: true
+  auth:
+    # -- If you want to use your own mariadb secret,
+    # set `createSecrets` to false and update `mariadb.auth.existingSecret` field with the correct secret name
+    createSecrets: true
+    # -- The secret has to contain the following keys
+    # `mariadb-root-password`,
+    # `mariadb-replication-password`,
+    # `mariadb-password`,
+    # `ADMIN_PASSWORD`,
+    # `KEY`,
+    # `SECRET`
+    existingSecret: "directus-secret"
+    # -- Directus datatbase name
+    database: directus
+    # -- The user that is being used to connect to database
+    username: "directus"
+  # -- The URL to the mariadb instance, otherwise leave it empty to use one that installed in the cluster
+  mariadbURL: ""
+
+redis:
+# -- Switch to enable Redis
+  enabled: true
+  auth:
+    # -- Existing secret name with Redis password
+    existingSecret: ""
+    # -- The key in the secret with password 
+    existingSecretPasswordKey: ""
+  replica:
+    # -- Amount of Redis replicas
+    replicaCount: 0
