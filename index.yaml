@@ -3,7 +3,7 @@ entries:
   directus:
   - apiVersion: v2
     appVersion: 11.3.2
-    created: "2025-01-17T14:26:31.533256946+01:00"
+    created: "2025-01-17T14:42:41.121369955+01:00"
     dependencies:
     - condition: mariadb.enableInstallation
       name: mariadb
@@ -19,7 +19,7 @@ entries:
       version: ~16.3.0
     description: 'A Helm chart for installing Directus on Kubernetes. Directus is
       a real-time API and App dashboard for managing SQL database content. '
-    digest: 9cf842bae0e258f9ff6a7b6be2e3da56a2cc56b439bc84b508ee371293a0c3b0
+    digest: 9d25e6ea5e7de4e1ef630bff2479c12cb8a459c53865a6b82a768335e44e0183
     home: https://directus.io/
     icon: https://avatars.githubusercontent.com/u/79210894
     maintainers:
@@ -34,4 +34,130 @@ entries:
     urls:
     - https://raw.githubusercontent.com/neokdev/directus-helm-chart/main/directus-1.2.0.tgz
     version: 1.2.0
-generated: "2025-01-17T14:26:31.521718541+01:00"
+  mariadb:
+  - annotations:
+      category: Database
+      images: |
+        - name: mariadb
+          image: docker.io/bitnami/mariadb:11.3.2-debian-12-r5
+        - name: mysqld-exporter
+          image: docker.io/bitnami/mysqld-exporter:0.15.1-debian-12-r16
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:12-debian-12-r21
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 11.3.2
+    created: "2025-01-17T14:42:41.123878362+01:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: 710328d658e5b39ff346dbd5721fae59e7b919255925639dfdd28bcb33463387
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/mariadb/img/mariadb-stack-220x234.png
+    keywords:
+    - mariadb
+    - mysql
+    - database
+    - sql
+    - prometheus
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://github.com/bitnami/charts
+    name: mariadb
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/mariadb
+    urls:
+    - https://raw.githubusercontent.com/neokdev/directus-helm-chart/main/charts/mariadb-18.0.6.tgz
+    version: 18.0.6
+  postgresql:
+  - annotations:
+      category: Database
+      images: |
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:12-debian-12-r34
+        - name: postgres-exporter
+          image: docker.io/bitnami/postgres-exporter:0.16.0-debian-12-r2
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:17.2.0-debian-12-r5
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 17.2.0
+    created: "2025-01-17T14:42:41.130379965+01:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: PostgreSQL (Postgres) is an open source object-relational database
+      known for reliability and data integrity. ACID-compliant, it supports foreign
+      keys, joins, views, triggers and stored procedures.
+    digest: 62b45ba1a5744574afdf7f01901cf284f4b1c9c4d80e494ffd63b46426236261
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://github.com/bitnami/charts
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    urls:
+    - https://raw.githubusercontent.com/neokdev/directus-helm-chart/main/charts/postgresql-16.3.5.tgz
+    version: 16.3.5
+  redis:
+  - annotations:
+      category: Database
+      images: |
+        - name: kubectl
+          image: docker.io/bitnami/kubectl:1.30.3-debian-12-r4
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:12-debian-12-r27
+        - name: redis
+          image: docker.io/bitnami/redis:7.2.5-debian-12-r4
+        - name: redis-exporter
+          image: docker.io/bitnami/redis-exporter:1.62.0-debian-12-r2
+        - name: redis-sentinel
+          image: docker.io/bitnami/redis-sentinel:7.2.5-debian-12-r4
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 7.2.5
+    created: "2025-01-17T14:42:41.134354309+01:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Redis(R) is an open source, advanced key-value store. It is often
+      referred to as a data structure server since keys can contain strings, hashes,
+      lists, sets and sorted sets.
+    digest: 488b39d7dbf107c3749aedb11fd76a8be04762de91920d1b607590ffdd99bd9d
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://github.com/bitnami/charts
+    name: redis
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/redis
+    urls:
+    - https://raw.githubusercontent.com/neokdev/directus-helm-chart/main/charts/redis-19.6.4.tgz
+    version: 19.6.4
+generated: "2025-01-17T14:42:41.108354625+01:00"
